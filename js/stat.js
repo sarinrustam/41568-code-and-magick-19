@@ -14,7 +14,7 @@ var MAX_BAR_HEIGHT = 150;
 var FONT_COLOR = '#000';
 var FONT_FAMILY = '16px PT Mono';
 var FONT_SIZE = 16;
-var MARGIN_TOP = 30;
+var TITLE_MARGIN_TOP = 30;
 
 var renderFieldStat = function (ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -48,8 +48,8 @@ window.renderStatistics = function (ctx, names, times) {
   renderFieldStat(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderFieldStat(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
-  renderText(ctx, 'Ура вы победили!', FIELD_STAT_X, MARGIN_TOP, FONT_COLOR, FONT_FAMILY);
-  renderText(ctx, 'Список результатов:', FIELD_STAT_X, MARGIN_TOP + FONT_SIZE, FONT_COLOR, FONT_FAMILY);
+  renderText(ctx, 'Ура вы победили!', FIELD_STAT_X, TITLE_MARGIN_TOP, FONT_COLOR, FONT_FAMILY);
+  renderText(ctx, 'Список результатов:', FIELD_STAT_X, TITLE_MARGIN_TOP + FONT_SIZE, FONT_COLOR, FONT_FAMILY);
 
   var maxTime = getElementMax(times);
 
