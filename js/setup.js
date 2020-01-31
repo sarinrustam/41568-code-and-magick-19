@@ -1,8 +1,8 @@
 'use strict';
-var names = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-var surnames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
+var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
+var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
+var COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
 
 var wizards = [];
 
@@ -18,9 +18,9 @@ var getRandom = function (array) {
 
 for (var i = 0; i < 4; i++) {
   wizards.push({
-    name: getRandom(names) + ' ' + getRandom(surnames),
-    coatColor: getRandom(coatColor),
-    eyesColor: getRandom(eyesColor)
+    name: getRandom(NAMES) + ' ' + getRandom(SURNAMES),
+    coatColor: getRandom(COAT_COLOR),
+    eyesColor: getRandom(EYES_COLOR)
   });
 }
 
