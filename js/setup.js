@@ -1,26 +1,21 @@
 'use strict';
 var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
+var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
+var COUNT_WIZARDS = 4;
 
 var wizards = [];
 
-var getRandom = function (array) {
-  var index = function (from, to) {
-    return Math.floor(Math.random() * to) + from;
-  };
-
-  var i = index(0, array.length - 1);
-
-  return array[i];
+var getRandomElement = function (array) {
+  return array[Math.floor(Math.random() * 0) + array.length - 1];
 };
 
-for (var i = 0; i < 4; i++) {
+for (var i = 0; i < COUNT_WIZARDS; i++) {
   wizards.push({
-    name: getRandom(NAMES) + ' ' + getRandom(SURNAMES),
-    coatColor: getRandom(COAT_COLOR),
-    eyesColor: getRandom(EYES_COLOR)
+    name: getRandomElement(NAMES) + ' ' + getRandomElement(SURNAMES),
+    coatColor: getRandomElement(COAT_COLORS),
+    eyesColor: getRandomElement(EYES_COLORS)
   });
 }
 
@@ -43,7 +38,7 @@ var renderWizard = function (wizard) {
   return wizardElement;
 };
 
-var generateWizards = function () {
+var renderWizards = function () {
   var fragment = document.createDocumentFragment();
 
   for (var j = 0; j < wizards.length; j++) {
@@ -53,4 +48,4 @@ var generateWizards = function () {
   similarListElement.appendChild(fragment);
 };
 
-generateWizards();
+renderWizards();
