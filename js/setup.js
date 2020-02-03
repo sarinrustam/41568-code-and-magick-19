@@ -5,19 +5,22 @@ var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var COUNT_WIZARDS = 4;
 
-var wizards = [];
-
 var getRandomElement = function (array) {
   return array[Math.floor(Math.random() * 0) + array.length - 1];
 };
 
-for (var i = 0; i < COUNT_WIZARDS; i++) {
-  wizards.push({
-    name: getRandomElement(NAMES) + ' ' + getRandomElement(SURNAMES),
-    coatColor: getRandomElement(COAT_COLORS),
-    eyesColor: getRandomElement(EYES_COLORS)
-  });
-}
+var getWizards = function () {
+  var wizards = [];
+
+  for (var i = 0; i < COUNT_WIZARDS; i++) {
+    wizards.push({
+      name: getRandomElement(NAMES) + ' ' + getRandomElement(SURNAMES),
+      coatColor: getRandomElement(COAT_COLORS),
+      eyesColor: getRandomElement(EYES_COLORS)
+    });
+  }
+  return wizards;
+};
 
 var userSetup = document.querySelector('.setup');
 userSetup.classList.remove('hidden');
@@ -38,7 +41,7 @@ var renderWizard = function (wizard) {
   return wizardElement;
 };
 
-var renderWizards = function () {
+var renderWizards = function (wizards) {
   var fragment = document.createDocumentFragment();
 
   for (var j = 0; j < wizards.length; j++) {
@@ -48,4 +51,4 @@ var renderWizards = function () {
   similarListElement.appendChild(fragment);
 };
 
-renderWizards();
+renderWizards(getWizards());
