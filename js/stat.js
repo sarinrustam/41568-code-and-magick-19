@@ -27,6 +27,10 @@ var renderText = function (ctx, text, x, y, color, font) {
   ctx.fillText(text, x, y);
 };
 
+var createColor = function () {
+  return 'rgba(0, 0, 255,' + (Math.round(Math.random() * 10) / 10 + 0.1) + ')';
+};
+
 var getElementMax = function (arr) {
   if (!arr.length) {
     return 0;
@@ -57,7 +61,7 @@ window.renderStatistics = function (ctx, names, times) {
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = 'rgba(0, 0, 255,' + (Math.round(Math.random() * 10) / 10 + 0.1) + ')';
+      ctx.fillStyle = createColor();
     }
     ctx.fillText(names[i], FIELD_STAT_X + (BAR_SPACE + BAR_WIDTH) * i, FIELD_STAT_HEIGHT - GAP);
     ctx.fillRect(FIELD_STAT_X + (BAR_SPACE + BAR_WIDTH) * i, FIELD_STAT_END - (MAX_BAR_HEIGHT * times[i]) / maxTime, BAR_WIDTH, (MAX_BAR_HEIGHT * times[i]) / maxTime);
