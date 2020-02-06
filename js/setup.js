@@ -5,8 +5,19 @@ var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var COUNT_WIZARDS = 4;
 
+var setup = document.querySelector('.setup');
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
+console.log(setup);
+console.log(setupOpen);
+console.log(setupClose);
+
+setupOpen.addEventListener('click', function () {
+  setup.classList.remove('hidden');
+});
+
 var getRandomElement = function (array) {
-  return array[Math.floor(Math.random() * 0) + array.length - 1];
+  return array[Math.floor(Math.random() * array.length - 1)];
 };
 
 var getWizards = function () {
@@ -19,6 +30,7 @@ var getWizards = function () {
       eyesColor: getRandomElement(EYES_COLORS)
     });
   }
+  console.log(wizards);
   return wizards;
 };
 
