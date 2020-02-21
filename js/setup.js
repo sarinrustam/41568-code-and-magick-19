@@ -33,15 +33,7 @@ var onLoad = function (response) {
 };
 
 var onError = function (errorMessage) {
-  var node = document.createElement('div');
-  node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
-  node.style.position = 'absolute';
-  node.style.left = 0;
-  node.style.right = 0;
-  node.style.fontSize = '30px';
-
-  node.textContent = errorMessage;
-  document.body.insertAdjacentElement('afterbegin', node);
+  window.util.showMessage(errorMessage, 'tomato');
 };
 
 var onSubmitForm = function (evt) {
@@ -52,15 +44,7 @@ var onSubmitForm = function (evt) {
   };
 
   var onErrorForm = function (error) {
-    var node = document.createElement('div');
-    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
-    node.style.position = 'absolute';
-    node.style.left = 0;
-    node.style.right = 0;
-    node.style.fontSize = '30px';
-
-    node.textContent = error;
-    document.body.insertAdjacentElement('afterbegin', node);
+    window.util.showMessage(error, 'red');
   };
 
   window.backend.save(new FormData(form), onLoadForm, onErrorForm);
