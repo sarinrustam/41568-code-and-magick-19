@@ -33,7 +33,7 @@ var onLoad = function (response) {
 };
 
 var onError = function (errorMessage) {
-  window.util.showMessage(errorMessage, 'tomato');
+  window.util.showMessage(errorMessage);
 };
 
 var onSubmitForm = function (evt) {
@@ -44,7 +44,7 @@ var onSubmitForm = function (evt) {
   };
 
   var onErrorForm = function (error) {
-    window.util.showMessage(error, 'red');
+    window.util.showMessage(error);
   };
 
   window.backend.save(new FormData(form), onLoadForm, onErrorForm);
