@@ -1,23 +1,7 @@
 'use strict';
 
-var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
-var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var COUNT_WIZARDS = 4;
-
-var getWizards = function () {
-  var wizards = [];
-
-  for (var i = 0; i < COUNT_WIZARDS; i++) {
-    wizards.push({
-      name: window.util.getRandomElement(NAMES) + ' ' + window.util.getRandomElement(SURNAMES),
-      coatColor: window.util.getRandomElement(COAT_COLORS),
-      eyesColor: window.util.getRandomElement(EYES_COLORS)
-    });
-  }
-  return wizards;
-};
+var setup = document.querySelector('.setup');
+var form = setup.querySelector('.setup-wizard-form');
 
 document.querySelector('.setup-similar').classList.remove('hidden');
 var similarListElement = document.querySelector('.setup-similar-list');
@@ -27,8 +11,8 @@ var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
   wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+  wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
 
   return wizardElement;
 };
@@ -43,4 +27,29 @@ var renderWizards = function (wizards) {
   similarListElement.appendChild(fragment);
 };
 
-renderWizards(getWizards());
+var onLoad = function (response) {
+  var firstFour = response.splice(0, 4);
+  renderWizards(firstFour);
+};
+
+var onError = function (errorMessage) {
+  window.util.showMessage(errorMessage);
+};
+
+var onSubmitForm = function (evt) {
+  evt.preventDefault();
+
+  var onLoadForm = function () {
+    setup.classList.add('hidden');
+  };
+
+  var onErrorForm = function (error) {
+    window.util.showMessage(error);
+  };
+
+  window.backend.save(new FormData(form), onLoadForm, onErrorForm);
+};
+
+form.addEventListener('submit', onSubmitForm);
+
+window.backend.load(onLoad, onError);
